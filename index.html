@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Günaydınnn Tuğbaaa</title>
+    <title>Günaydın Tuğba</title>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     
     <style>
@@ -12,8 +12,9 @@
             margin: 0;
             padding: 0;
             background-color: #ffb6c1; /* Tatlı bir pembe tonu */
-            overflow: hidden; /* Sayfanın kaydırılmasını engeller */
+            overflow: hidden; 
             display: flex;
+            flex-direction: column; /* İçerikleri alt alta dizer */
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -23,12 +24,53 @@
         /* Ortadaki ana yazı */
         h1 {
             color: #d32f2f; /* Koyu kırmızı */
-            font-size: 5rem;
+            font-size: 4rem;
             text-align: center;
-            z-index: 10; /* Yazının kalplerin üstünde durmasını sağlar */
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.2); /* Hafif gölge efekti */
-            margin: 0;
-            padding: 20px;
+            z-index: 10; 
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2); 
+            margin-bottom: 30px; /* Butonla arasına boşluk bırakır */
+        }
+
+        /* Sürpriz Butonu Tasarımı */
+        #surpriseBtn {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            font-family: 'Pacifico', cursive;
+            color: white;
+            background-color: #d32f2f;
+            border: none;
+            border-radius: 30px; /* Kenarları yuvarlatır */
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s; /* Üzerine gelince büyüme efekti için */
+        }
+
+        /* Fare butonun üzerine gelince hafif büyür */
+        #surpriseBtn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Gizli fotoğraf kutusu ayarları */
+        #photoContainer {
+            display: none; /* Sayfa ilk açıldığında gizli tutar */
+            z-index: 10;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out; /* Fotoğrafın yavaşça belirmesini sağlar */
+        }
+
+        /* Fotoğrafın çerçeve ayarları */
+        #photoContainer img {
+            max-width: 300px; /* Fotoğrafın ekrana sığması için maksimum boyut */
+            border: 5px solid white; /* Beyaz tatlı bir çerçeve */
+            border-radius: 15px; /* Çerçeve köşelerini yuvarlatır */
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.3); /* Fotoğrafa gölge verir */
+        }
+
+        /* Fotoğrafın yavaşça gelme animasyonu */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         /* Düşen kalplerin özellikleri */
@@ -38,45 +80,52 @@
             color: red;
             font-size: 2rem;
             animation: fall linear forwards;
-            z-index: 1; /* Kalpler yazının arkasından geçer */
+            z-index: 1; 
         }
 
-        /* Düşme animasyonu */
         @keyframes fall {
             to {
-                transform: translateY(110vh); /* Ekranın altına kadar düşer */
+                transform: translateY(110vh); 
             }
         }
     </style>
 </head>
 <body>
 
-    <h1>Seni seviyorum Tuğba ❤️</h1>
+    <h1>Günaydınn Tuğba ❤️</h1>
+
+    <button id="surpriseBtn" onclick="showSurprise()">Sürprizi açmak ister misin? 🎁</button>
+
+    <div id="photoContainer">
+        <img src="fotograf.jpg" alt="Tuğba'nın Küçüklüğü">
+    </div>
 
     <script>
+        // Butona tıklandığında çalışacak kod
+        function showSurprise() {
+            document.getElementById('surpriseBtn').style.display = 'none'; // Butonu gizler
+            document.getElementById('photoContainer').style.display = 'block'; // Fotoğrafı gösterir
+        }
+
+        // Kalp animasyonunu oluşturan kod
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart');
             heart.innerHTML = '❤️';
             
-            // Kalplerin rastgele yerlerden ve farklı hızlarda düşmesini sağlar
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 3 + 2 + 's'; // 2 ile 5 saniye arası
-            heart.style.fontSize = Math.random() * 1.5 + 1 + 'rem'; // Farklı boyutlar
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's'; 
+            heart.style.fontSize = Math.random() * 1.5 + 1 + 'rem'; 
             
             document.body.appendChild(heart);
 
-            // Ekrandan çıkan kalpleri temizler
             setTimeout(() => {
                 heart.remove();
             }, 5000);
         }
 
-        // Her 300 milisaniyede bir yeni kalp oluşturur
         setInterval(createHeart, 300);
     </script>
 
 </body>
 </html>
-
-
