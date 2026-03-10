@@ -1,1 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seni Seviyorum Tuğba</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Arka plan ve genel ayarlar */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffb6c1; /* Tatlı bir pembe tonu */
+            overflow: hidden; /* Sayfanın kaydırılmasını engeller */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Pacifico', cursive;
+        }
+
+        /* Ortadaki ana yazı */
+        h1 {
+            color: #d32f2f; /* Koyu kırmızı */
+            font-size: 5rem;
+            text-align: center;
+            z-index: 10; /* Yazının kalplerin üstünde durmasını sağlar */
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2); /* Hafif gölge efekti */
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Düşen kalplerin özellikleri */
+        .heart {
+            position: absolute;
+            top: -10vh;
+            color: red;
+            font-size: 2rem;
+            animation: fall linear forwards;
+            z-index: 1; /* Kalpler yazının arkasından geçer */
+        }
+
+        /* Düşme animasyonu */
+        @keyframes fall {
+            to {
+                transform: translateY(110vh); /* Ekranın altına kadar düşer */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Seni seviyorum Tuğba ❤️</h1>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            
+            // Kalplerin rastgele yerlerden ve farklı hızlarda düşmesini sağlar
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's'; // 2 ile 5 saniye arası
+            heart.style.fontSize = Math.random() * 1.5 + 1 + 'rem'; // Farklı boyutlar
+            
+            document.body.appendChild(heart);
+
+            // Ekrandan çıkan kalpleri temizler
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Her 300 milisaniyede bir yeni kalp oluşturur
+        setInterval(createHeart, 300);
+    </script>
+
+</body>
+</html>
 
